@@ -1,0 +1,24 @@
+# backend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: melike1051/hello-ziraat-backend:latest
+
+          ports:
+            - containerPort: 11130
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: server=db-service;port=3306;database=ziraatdb;user=root;password=0000;
