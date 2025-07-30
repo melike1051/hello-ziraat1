@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('hello-ziraat1/backend') {
+                dir('hello-ziraat1/Backend') {
                     sh "docker build -t $DOCKER_IMAGE ."
                 }
             }
