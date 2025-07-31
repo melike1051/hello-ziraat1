@@ -18,6 +18,14 @@
             document.getElementById('message').textContent = 'Hata: ' + error;
         });
 </script>
+<script>
+  console.log("JS çalıştı");
+  fetch('http://localhost:11130')
+    .then(res => res.text())
+    .then(data => console.log("Veri geldi:", data))
+    .catch(err => console.error("Fetch error:", err));
+</script>
+
 
 </body>
 </html>

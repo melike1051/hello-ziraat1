@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\hello-ziraat.csproj": {}
+    "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\Backend\\hello-ziraat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\hello-ziraat.csproj": {
+    "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\Backend\\hello-ziraat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\hello-ziraat.csproj",
+        "projectUniqueName": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\Backend\\hello-ziraat.csproj",
         "projectName": "hello-ziraat",
-        "projectPath": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\hello-ziraat.csproj",
+        "projectPath": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\Backend\\hello-ziraat.csproj",
         "packagesPath": "C:\\Users\\derya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\obj\\",
+        "outputPath": "C:\\Users\\derya\\OneDrive\\Desktop\\hello-ziraat\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
