@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Kubernetes config dosyasının yolu, container'da bu path'e mount ettik
+        KUBECONFIG = '/var/jenkins_home/.kube/config'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,8 +16,13 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                    kubectl config  use-context docker-desktop
+                    echo ">> Using context: docker-desktop"
+                    kubectl config use-context docker-desktop
+
+                    echo ">> Applying backend deployment..."
                     kubectl apply -f k8s/backend-deployment.yml
+
+                    echo ">> Applying backend service..."
                     kubectl apply -f k8s/backend-service.yml
                 '''
             }
