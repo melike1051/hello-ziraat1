@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/melike1051/hello-ziraat1.git'
+            }
+        }
+
+        stage('Deploy MySQL PVC') {
+            steps {
+                sh 'kubectl apply -f k8s/mysql-pvc.yaml'
+            }
+        }
+
+        stage('Deploy MySQL Deployment') {
+            steps {
+                sh 'kubectl apply -f k8s/mysql-deployment.yaml'
+            }
+        }
+
+        stage('Deploy MySQL Service') {
+            steps {
+                sh 'kubectl apply -f k8s/mysql-service.yaml'
+            }
+        }
+    }
+}
+s

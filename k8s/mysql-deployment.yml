@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: mysql-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: mysql
@@ -14,8 +15,8 @@ spec:
         app: mysql
     spec:
       containers:
-        - image: mysql:8.0
-          name: mysql
+        - name: mysql
+          image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "0000"
@@ -28,4 +29,5 @@ spec:
               mountPath: /var/lib/mysql
       volumes:
         - name: mysql-persistent-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: mysql-pvc
