@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/melike1051/hello-ziraat1.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 dir('Backend') {
