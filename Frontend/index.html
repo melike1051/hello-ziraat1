@@ -9,7 +9,7 @@
     <div id="message">Yükleniyor........</div>
 
     <script>
-    fetch('http://localhost:11130') // Tarayıcıdan backend'e erişim
+    fetch('http://localhost:30082') // Tarayıcıdan backend'e erişim
         .then(response => response.text()) // Eğer düz metin dönüyorsa
         .then(data => {
             document.getElementById('message').textContent = data;
@@ -20,7 +20,7 @@
 </script>
 <script>
   console.log("JS çalıştı");
-  fetch('http://localhost:11130')
+  fetch('http://localhost:30082')
     .then(res => res.text())
     .then(data => console.log("Veri geldi:", data))
     .catch(err => console.error("Fetch error:", err));
