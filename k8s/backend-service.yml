@@ -9,4 +9,5 @@ spec:
   ports:
     - port: 11130
       targetPort: 11130
-  type: ClusterIP
+      nodePort: 30082
+  type: NodePort
