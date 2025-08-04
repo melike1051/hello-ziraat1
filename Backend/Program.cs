@@ -5,7 +5,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:8081")  // Frontend'in çalıştığı adres
+        policy.WithOrigins("http://localhost:30081")  // Frontend'in çalıştığı adres
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -20,4 +20,4 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // connectionString = "server=db;port=3306;database=ziraatdb;user=root;password=0000;";
 
 app.MapGet("/", () => "Hello Ziraat team from Melike!");
-app.Run("http://0.0.0.0:11130");
+app.Run("http://0.0.0.0:30082");
