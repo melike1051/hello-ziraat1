@@ -19,7 +19,7 @@ pipeline {
                     kubectl config use-context docker-desktop
                     kubectl apply -f k8s/mysql-pvc.yml
                     kubectl apply -f k8s/mysql-deployment.yml
-                    kubectl apply -f k8s/mysql-service.aml
+                    kubectl apply -f k8s/mysql-service.yml
                 '''
             }
         }
