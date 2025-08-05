@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Kubernetes config dosyasının yolu, container'da bu path'e mount ettik
+        KUBECONFIG = '/var/jenkins_home/.kube/config'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -8,23 +13,15 @@ pipeline {
             }
         }
 
-        stage('Deploy MySQL PVC') {
+        stage('Apply K8s Configs') {
             steps {
-                sh 'kubectl apply -f k8s/mysql-pvc.yaml'
-            }
-        }
-
-        stage('Deploy MySQL Deployment') {
-            steps {
-                sh 'kubectl apply -f k8s/mysql-deployment.yaml'
-            }
-        }
-
-        stage('Deploy MySQL Service') {
-            steps {
-                sh 'kubectl apply -f k8s/mysql-service.yaml'
+                sh '''
+                    kubectl config use-context docker-desktop
+                    kubectl apply -f k8s/mysql-pvc.yml
+                    kubectl apply -f k8s/mysql-deployment.yml
+                    kubectl apply -f k8s/mysql-service.aml
+                '''
             }
         }
     }
 }
-s
