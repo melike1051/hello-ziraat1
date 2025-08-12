@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hello-ziraat.fullname" . }}-mysql
+  labels:
+    app: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: {{ .Values.mysql.servicePort | default 3306 }}
+      targetPort: {{ .Values.mysql.containerPort | default 3306 }}
+  clusterIP: None

@@ -1,0 +1,40 @@
+serviceAccount:
+  create: false
+  name: ""
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+backend:
+  image: melike1051/hello-ziraat-backend:latest
+  containerPort: 11130
+  service:
+    type: NodePort
+    servicePort: 11130
+    nodePort: 30082
+  env:
+    - name: ConnectionStrings__DefaultConnection
+      value: server=mysql-service;port=3306;database=ziraatdb;user=root;password=0000;
+
+frontend:
+  image: melike1051/hello-ziraat-frontend:latest
+  containerPort: 80
+  service:
+    type: NodePort
+    servicePort: 80
+    nodePort: 30081
+
+mysql:
+  image: mysql:8.0
+  rootPassword: "0000"
+  database: "ziraatdb"
+  containerPort: 3306
+  servicePort: 3306 
+  storage: 2Gi
+  storageClassName: hostpath

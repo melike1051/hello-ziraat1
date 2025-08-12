@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0
+          image: {{ .Values.mysql.image }}
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "0000"
+              value: {{ .Values.mysql.rootPassword | quote }}
             - name: MYSQL_DATABASE
-              value: "ziraatdb"
+              value: {{ .Values.mysql.database | quote }}
           ports:
-            - containerPort: 3306
+            - containerPort: {{ .Values.mysql.containerPort }}
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql

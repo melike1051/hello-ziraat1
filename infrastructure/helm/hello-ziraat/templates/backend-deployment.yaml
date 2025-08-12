@@ -1,4 +1,3 @@
-# backend-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,10 +14,11 @@ spec:
     spec:
       containers:
         - name: backend
-          image: melike1051/hello-ziraat-backend:latest
-
+          image: {{ .Values.backend.image }}
           ports:
-            - containerPort: 11130
+            - containerPort: {{ .Values.backend.containerPort }}
           env:
-            - name: ConnectionStrings__DefaultConnection
-              value: server=db-service;port=3306;database=ziraatdb;user=root;password=0000;
+{{- range .Values.backend.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+{{- end }}

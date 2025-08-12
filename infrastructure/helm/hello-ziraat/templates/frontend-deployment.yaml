@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hello-ziraat.fullname" . }}-frontend
+  labels:
+    {{- include "hello-ziraat.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "hello-ziraat.name" . }}-frontend
+  template:
+    metadata:
+      labels:
+        app: {{ include "hello-ziraat.name" . }}-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.frontend.image }}
+          ports:
+            - containerPort: {{ .Values.frontend.containerPort }}

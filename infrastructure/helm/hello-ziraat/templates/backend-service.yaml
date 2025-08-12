@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hello-ziraat.fullname" . }}-backend
+  labels:
+    {{- include "hello-ziraat.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: {{ .Values.backend.service.servicePort }}
+      targetPort: {{ .Values.backend.containerPort }}
+      nodePort: {{ .Values.backend.service.nodePort }}
+  type: {{ .Values.backend.service.type }}

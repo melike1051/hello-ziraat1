@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hello-ziraat.fullname" . }}-frontend
+  labels:
+    app: {{ include "hello-ziraat.name" . }}-frontend
+spec:
+  type: {{ .Values.frontend.service.type }}
+  selector:
+    app: {{ include "hello-ziraat.name" . }}-frontend
+  ports:
+    - port: {{ .Values.frontend.service.servicePort }}
+      targetPort: {{ .Values.frontend.containerPort }}
+      nodePort: {{ .Values.frontend.service.nodePort }}

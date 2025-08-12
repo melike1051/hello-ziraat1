@@ -1,0 +1,14 @@
+apiVersion: v2               # Helm chart versiyonu, genelde v2 kullanılır
+name: hello-ziraat           # Chart ismi, klasör adıyla aynı olabilir
+description: A Helm chart for deploying hello-ziraat app
+
+type: application            # Chart tipi, genelde application olur
+
+version: 0.1.0               # Chart versiyonu (semver uyumlu)
+appVersion: "1.0"            # Deploy edilen uygulamanın versiyonu (ör: container image tag)
+
+
+keywords:                    # Arama kolaylığı için anahtar kelimeler
+  - example
+  - ziraat
+  - demo
