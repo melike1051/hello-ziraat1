@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Kubernetes config dosyasının yolu, container'da bu path'e mount ettik
         KUBECONFIG = '/var/jenkins_home/.kube/config'
     }
 
@@ -13,13 +12,13 @@ pipeline {
             }
         }
 
-        stage('Apply K8s Configs') {
+        stage('Deploy MySQL with Helm') {
             steps {
                 sh '''
                     kubectl config use-context docker-desktop
-                    kubectl apply -f k8s/mysql-pvc.yml
-                    kubectl apply -f k8s/mysql-deployment.yml
-                    kubectl apply -f k8s/mysql-service.yml
+
+                    echo "Deploying MySQL with Helm..."
+                    helm upgrade --install mysql ./chart-mysql --namespace default
                 '''
             }
         }
