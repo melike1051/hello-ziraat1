@@ -1,9 +1,7 @@
-
 pipeline {
     agent any
 
     environment {
-        // Kubernetes config dosyasının yolu, container'da bu path'e mount ettik
         KUBECONFIG = '/var/jenkins_home/.kube/config'
     }
 
@@ -14,13 +12,13 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy Frontend with Helm') {
             steps {
                 sh '''
                     kubectl config use-context docker-desktop
-                    kubectl apply -f k8s/frontend-deployment.yml
-                    kubectl apply -f k8s/frontend-service.yml
 
+                    echo "Deploying frontend with Helm..."
+                    helm upgrade --install frontend ./chart-frontend --namespace default
                 '''
             }
         }

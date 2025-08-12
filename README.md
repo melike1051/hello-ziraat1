@@ -1,8 +1,8 @@
-\# Hello Ziraat - DevOps Challenge
+ Hello Ziraat - DevOps Challenge
 
 
 
-\## 🔧 Technologies Used
+ Technologies Used
 
 \- .NET 9 (Backend)
 
@@ -18,19 +18,20 @@
 
 ---
 
+ How to Deploy
 
 
-\## 🚀 How to Deploy
 
 
 
-\### 1. Build Docker Images
+ 1. Build Docker Images
 
 ```bash
 
 docker build -t your-backend-image ./Backend
 
 docker build -t your-frontend-image ./Frontend
+
 
 
 
