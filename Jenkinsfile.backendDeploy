@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Kubernetes config dosyasının yolu, container'da bu path'e mount ettik
-        KUBECONFIG = '/var/jenkins_home/.kube/config'
+        KUBECONFIG = '/var/jenkins_home/.kube/config'  // Kubernetes config yolu
     }
 
     stages {
@@ -13,17 +12,31 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Build Docker Image') {
+            steps {
+                dir('Backend') {
+                    sh 'docker build -t melike1051/hello-ziraat-backend:latest .'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                    sh 'docker push melike1051/hello-ziraat-backend:latest'
+                }
+            }
+        }
+
+        stage('Deploy with Helm') {
             steps {
                 sh '''
-                    echo ">> Using context: docker-desktop"
+                    echo "Using context: docker-desktop"
                     kubectl config use-context docker-desktop
 
-                    echo ">> Applying backend deployment..."
-                    kubectl apply -f k8s/backend-deployment.yml
-
-                    echo ">> Applying backend service..."
-                    kubectl apply -f k8s/backend-service.yml
+                    echo "Deploying backend with Helm"
+                    helm upgrade --install backend ./chart-backend --namespace default
                 '''
             }
         }
